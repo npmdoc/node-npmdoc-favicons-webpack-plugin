@@ -1,0 +1,346 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/jantimon/favicons-webpack-plugin"
+
+    >favicons-webpack-plugin (v0.0.7)</a>
+</h1>
+<h4>Let webpack generate all your favicons and icons for you</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.favicons-webpack-plugin">module favicons-webpack-plugin</a><ol>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">favicons-webpack-plugin.</span>cache</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">favicons-webpack-plugin.</span>compiler</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.favicons-webpack-plugin.cache">module favicons-webpack-plugin.cache</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.favicons-webpack-plugin.cache.emitCacheInformationFile">
+            function <span class="apidocSignatureSpan">favicons-webpack-plugin.cache.</span>emitCacheInformationFile
+            <span class="apidocSignatureSpan">(loader, query, cacheFile, fileHash, iconResult)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.favicons-webpack-plugin.cache.loadIconsFromDiskCache">
+            function <span class="apidocSignatureSpan">favicons-webpack-plugin.cache.</span>loadIconsFromDiskCache
+            <span class="apidocSignatureSpan">(loader, query, cacheFile, fileHash, callback)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.favicons-webpack-plugin.compiler">module favicons-webpack-plugin.compiler</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.favicons-webpack-plugin.compiler.compileTemplate">
+            function <span class="apidocSignatureSpan">favicons-webpack-plugin.compiler.</span>compileTemplate
+            <span class="apidocSignatureSpan">(options, context, compilation)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.favicons-webpack-plugin" id="apidoc.module.favicons-webpack-plugin">module favicons-webpack-plugin</a></h1>
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.favicons-webpack-plugin.cache" id="apidoc.module.favicons-webpack-plugin.cache">module favicons-webpack-plugin.cache</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.favicons-webpack-plugin.cache.emitCacheInformationFile" id="apidoc.element.favicons-webpack-plugin.cache.emitCacheInformationFile">
+        function <span class="apidocSignatureSpan">favicons-webpack-plugin.cache.</span>emitCacheInformationFile
+        <span class="apidocSignatureSpan">(loader, query, cacheFile, fileHash, iconResult)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function emitCacheInformationFile(loader, query, cacheFile, fileHash, iconResult) {
+  if (!query.persistentCache) {
+    return;
+  }
+  loader.emitFile(cacheFile, JSON.stringify({
+    hash: fileHash,
+    version: pluginVersion,
+    optionHash: generateHashForOptions(query),
+    result: iconResult
+  }));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  if (err) return callback(err);
+  if (cachedResult) {
+    return callback(null, &#x27;module.exports = &#x27; + JSON.stringify(cachedResult));
+  }
+  // Generate icons
+  generateIcons(self, content, pathPrefix, query, function (err, iconResult) {
+    if (err) return callback(err);
+    faviconPersitenceCache.<span class="apidocCodeKeywordSpan">emitCacheInformationFile</span>(self, query, cacheFile, fileHash,
+iconResult);
+    callback(null, &#x27;module.exports = &#x27; + JSON.stringify(iconResult));
+  });
+});
+};
+
+function getPublicPath (compilation) {
+var publicPath = compilation.outputOptions.publicPath || &#x27;&#x27;;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.favicons-webpack-plugin.cache.loadIconsFromDiskCache" id="apidoc.element.favicons-webpack-plugin.cache.loadIconsFromDiskCache">
+        function <span class="apidocSignatureSpan">favicons-webpack-plugin.cache.</span>loadIconsFromDiskCache
+        <span class="apidocSignatureSpan">(loader, query, cacheFile, fileHash, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function loadIconsFromDiskCache(loader, query, cacheFile, fileHash, callback) {
+  // Stop if cache is disabled
+  if (!query.persistentCache) return callback(null);
+  var resolvedCacheFile = path.resolve(__dirname, loader._compiler.parentCompilation.compiler.outputPath, cacheFile);
+
+  fs.exists(resolvedCacheFile, function (exists) {
+    if (!exists) return callback(null);
+    fs.readFile(resolvedCacheFile, function (err, content) {
+      if (err) return callback(err);
+      var cache;
+      try {
+        cache = JSON.parse(content);
+        // Bail out if the file or the option changed
+        if (!isCacheValid(cache, fileHash, query)) {
+          return callback(null);
+        }
+      } catch (e) {
+        return callback(e);
+      }
+      callback(null, cache.result);
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+});
+var fileHash = loaderUtils.interpolateName(self, &#x27;[hash]&#x27;, {
+  context: query.context || this.options.context,
+  content: content,
+  regExp: query.regExp
+});
+var cacheFile = pathPrefix + &#x27;.cache&#x27;;
+faviconPersitenceCache.<span class="apidocCodeKeywordSpan">loadIconsFromDiskCache</span>(self, query, cacheFile, fileHash, function
+ (err, cachedResult) {
+  if (err) return callback(err);
+  if (cachedResult) {
+    return callback(null, &#x27;module.exports = &#x27; + JSON.stringify(cachedResult));
+  }
+  // Generate icons
+  generateIcons(self, content, pathPrefix, query, function (err, iconResult) {
+    if (err) return callback(err);
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.favicons-webpack-plugin.compiler" id="apidoc.module.favicons-webpack-plugin.compiler">module favicons-webpack-plugin.compiler</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.favicons-webpack-plugin.compiler.compileTemplate" id="apidoc.element.favicons-webpack-plugin.compiler.compileTemplate">
+        function <span class="apidocSignatureSpan">favicons-webpack-plugin.compiler.</span>compileTemplate
+        <span class="apidocSignatureSpan">(options, context, compilation)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function compileTemplate(options, context, compilation) {
+  // The entry file is just an empty helper as the dynamic template
+  // require is added in &#x22;loader.js&#x22;
+  var outputOptions = {
+    filename: options.statsFilename,
+    publicPath: compilation.outputOptions.publicPath
+  };
+  // Create an additional child compiler which takes the template
+  // and turns it into an Node.JS html factory.
+  // This allows us to use loaders during the compilation
+  var compilerName = getCompilerName(context, outputOptions.filename);
+  var childCompiler = compilation.createChildCompiler(compilerName, outputOptions);
+  childCompiler.context = context;
+  childCompiler.apply(
+    new SingleEntryPlugin(context, &#x27;!!&#x27; + require.resolve(&#x27;./favicons.js&#x27;) + &#x27;?&#x27; +
+      JSON.stringify({
+        outputFilePrefix: options.prefix,
+        icons: options.icons,
+        background: options.background,
+        persistentCache: options.persistentCache,
+        appName: options.title
+      }) + &#x27;!&#x27; + options.logo)
+  );
+
+  // Fix for &#x22;Uncaught TypeError: __webpack_require__(...) is not a function&#x22;
+  // Hot module replacement requires that every child compiler has its own
+  // cache. @see https://github.com/ampedandwired/html-webpack-plugin/pull/179
+  childCompiler.plugin(&#x27;compilation&#x27;, function (compilation) {
+    if (compilation.cache) {
+      if (!compilation.cache[compilerName]) {
+        compilation.cache[compilerName] = {};
+      }
+      compilation.cache = compilation.cache[compilerName];
+    }
+    compilation.plugin(&#x27;optimize-chunk-assets&#x27;, function (chunks, callback) {
+      if (!chunks[0]) {
+        return callback(compilation.errors[0] || &#x27;Favicons generation failed&#x27;);
+      }
+      var resultFile = chunks[0].files[0];
+      var resultCode = compilation.assets[resultFile].source();
+      var resultJson;
+      try {
+<span class="apidocCodeCommentSpan">        /*eslint no-eval:0 */
+</span>        var result = eval(resultCode);
+        resultJson = JSON.stringify(result);
+      } catch (e) {
+        return callback(e);
+      }
+      compilation.assets[resultFile] = {
+        source: function () {
+          return resultJson;
+        },
+        size: function () {
+          return resultJson.length;
+        }
+      };
+      callback(null);
+    });
+  });
+
+  // Compile and return a promise
+  return new Promise(function (resolve, reject) {
+    childCompiler.runAsChild(function (err, entries, childCompilation) {
+      if (err) {
+        return reject(err);
+      }
+      // Replace [hash] placeholders in filename
+      var outputName = compilation.mainTemplate.applyPluginsWaterfall(&#x27;asset-path&#x27;, outputOptions.filename, {
+        hash: childCompilation.hash,
+        chunk: entries[0]
+      });
+      // Resolve / reject the promise
+      if (childCompilation &#x26;&#x26; childCompilation.errors &#x26;&#x26; childCompilation.errors.length) {
+        var errorDetails = childCompilation.errors.map(function (error) {
+          return error.message + (error.error ? &#x27;:\n&#x27; + error.error : &#x27;&#x27;);
+        }).join(&#x27;\n&#x27;);
+        reject(new Error(&#x27;Child compilation failed:\n&#x27; + errorDetails));
+      } else if (err) {
+        reject(err);
+      } else {
+        resolve({
+          outputName: outputName,
+          stats: JSON.parse(childCompilation.assets[outputName].source())
+        });
+      }
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+if (!self.options.title) {
+  self.options.title = guessAppName(compiler.context);
+}
+
+// Generate the favicons
+var compilationResult;
+compiler.plugin(&#x27;make&#x27;, function (compilation, callback) {
+  childCompiler.<span class="apidocCodeKeywordSpan">compileTemplate</span>(self.options, compiler.context, compilation)
+    .then(function (result) {
+      compilationResult = result;
+      callback();
+    })
+    .catch(callback);
+});
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
