@@ -63,6 +63,15 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.element.favicons-webpack-plugin.favicons-webpack-plugin">
+            function <span class="apidocSignatureSpan"></span>favicons-webpack-plugin
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">favicons-webpack-plugin.</span>cache</span>
 
         </li>
@@ -114,6 +123,45 @@
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.favicons-webpack-plugin" id="apidoc.module.favicons-webpack-plugin">module favicons-webpack-plugin</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.favicons-webpack-plugin.favicons-webpack-plugin" id="apidoc.element.favicons-webpack-plugin.favicons-webpack-plugin">
+        function <span class="apidocSignatureSpan"></span>favicons-webpack-plugin
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function FaviconsWebpackPlugin(options) {
+  if (typeof options === &#x27;string&#x27;) {
+    options = {logo: options};
+  }
+  assert(typeof options === &#x27;object&#x27;, &#x27;FaviconsWebpackPlugin options are required&#x27;);
+  assert(options.logo, &#x27;An input file is required&#x27;);
+  this.options = _.extend({
+    prefix: &#x27;icons-[hash]/&#x27;,
+    emitStats: false,
+    statsFilename: &#x27;iconstats-[hash].json&#x27;,
+    persistentCache: true,
+    inject: true,
+    background: &#x27;#fff&#x27;
+  }, options);
+  this.options.icons = _.extend({
+    android: true,
+    appleIcon: true,
+    appleStartup: true,
+    coast: false,
+    favicons: true,
+    firefox: true,
+    opengraph: false,
+    twitter: false,
+    yandex: false,
+    windows: false
+  }, this.options.icons);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 
 
